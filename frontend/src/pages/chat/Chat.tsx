@@ -3,12 +3,13 @@ import { CommandBarButton, IconButton, Dialog, DialogType, Stack } from "@fluent
 import { DismissRegular, SquareRegular, ShieldLockRegular, ErrorCircleRegular } from "@fluentui/react-icons";
 
 import ReactMarkdown from "react-markdown";
-import remarkGfm from 'remark-gfm'
+import remarkGfm from 'remark-gfm';
 import rehypeRaw from "rehype-raw";
 import uuid from 'react-uuid';
 
 import styles from "./Chat.module.css";
-import Azure from "../../assets/Azure.svg";
+//import Azure from "../../assets/Azure.svg";
+import Azure from "../../assets/sara.png";
 
 import {
     ChatMessage,
@@ -71,7 +72,7 @@ const Chat = () => {
         if(appStateContext?.state.isCosmosDBAvailable?.status === CosmosDBStatus.NotWorking && appStateContext.state.chatHistoryLoadingState === ChatHistoryLoadingState.Fail && hideErrorDialog){
             let subtitle = `${appStateContext.state.isCosmosDBAvailable.status}. Please contact the site administrator.`
             setErrorMsg({
-                title: "Chat history is not enabled",
+                title: "O histórico do chat não está habilitado", //"Chat history is not enabled",
                 subtitle: subtitle
             })
             toggleErrorDialog();
@@ -541,11 +542,13 @@ const Chat = () => {
                             <Stack className={styles.chatEmptyState}>
                                 <img
                                     src={Azure}
-                                    className={styles.chatIcon}
+                                    
                                     aria-hidden="true"
                                 />
-                                <h1 className={styles.chatEmptyStateTitle}>Start chatting</h1>
-                                <h2 className={styles.chatEmptyStateSubtitle}>This chatbot is configured to answer your questions</h2>
+                                <h1 className={styles.chatEmptyStateTitle}>Olá, sou a Sara!</h1>
+                                <h3 className={styles.chatEmptyStateSubtitle}>Sou uma IA desenvolvida para facilitar o acesso democrático à informações confiáveis de saúde, medicamentos e bulas.</h3>
+                                <h3 className={styles.chatEmptyStateSubtitle}><a href="https://www.sara.com.br/" target="_blank">Acesse e saiba mais!</a></h3>
+                                
                             </Stack>
                         ) : (
                             <div className={styles.chatMessageStream} style={{ marginBottom: isLoading ? "40px" : "0px"}} role="log">
@@ -625,7 +628,7 @@ const Chat = () => {
                                     iconProps={{ iconName: 'Add' }}
                                     onClick={newChat}
                                     disabled={disabledButton()}
-                                    aria-label="start a new chat button"
+                                    aria-label="Iniciar um novo chat"
                                 />}
                                 <CommandBarButton
                                     role="button"
@@ -655,7 +658,7 @@ const Chat = () => {
                             </Stack>
                             <QuestionInput
                                 clearOnSend
-                                placeholder="Type a new question..."
+                                placeholder="Faça uma pergunta..."
                                 disabled={isLoading}
                                 onSend={(question, id) => {
                                     appStateContext?.state.isCosmosDBAvailable?.cosmosDB ? makeApiRequestWithCosmosDB(question, id) : makeApiRequestWithoutCosmosDB(question, id)

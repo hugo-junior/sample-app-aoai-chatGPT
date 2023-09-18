@@ -1,6 +1,7 @@
 import { Outlet, Link } from "react-router-dom";
 import styles from "./Layout.module.css";
-import Azure from "../../assets/Azure.svg";
+//import Azure from "../../assets/Azure.svg";
+import Azure from "../../assets/sara_logo.png";
 import { CopyRegular, ShareRegular } from "@fluentui/react-icons";
 import { CommandBarButton, Dialog, Stack, TextField, ICommandBarStyles, IButtonStyles, DefaultButton  } from "@fluentui/react";
 import { useContext, useEffect, useState } from "react";
@@ -36,7 +37,7 @@ const shareButtonStyles: ICommandBarStyles & IButtonStyles = {
 const Layout = () => {
     const [isSharePanelOpen, setIsSharePanelOpen] = useState<boolean>(false);
     const [copyClicked, setCopyClicked] = useState<boolean>(false);
-    const [copyText, setCopyText] = useState<string>("Copy URL");
+    const [copyText, setCopyText] = useState<string>("Copiar URL");
     const appStateContext = useContext(AppStateContext)
 
     const handleShareClick = () => {
@@ -46,7 +47,7 @@ const Layout = () => {
     const handleSharePanelDismiss = () => {
         setIsSharePanelOpen(false);
         setCopyClicked(false);
-        setCopyText("Copy URL");
+        setCopyText("Copiar URL");
     };
 
     const handleCopyClick = () => {
@@ -60,7 +61,7 @@ const Layout = () => {
 
     useEffect(() => {
         if (copyClicked) {
-            setCopyText("Copied URL");
+            setCopyText("URL Copiada");
         }
     }, [copyClicked]);
 
@@ -79,7 +80,7 @@ const Layout = () => {
                             aria-hidden="true"
                         />
                         <Link to="/" className={styles.headerTitleContainer}>
-                            <h1 className={styles.headerTitle}>Azure AI</h1>
+                            <h1 className={styles.headerTitle}>Sara GPT</h1>
                         </Link>
                     </Stack>
                     <Stack horizontal tokens={{ childrenGap: 4 }}>
@@ -111,7 +112,7 @@ const Layout = () => {
                       }]
                 }}
                 dialogContentProps={{
-                    title: "Share the web app",
+                    title: "Compartilhar o web app",
                     showCloseButton: true
                 }}
             >
@@ -121,7 +122,7 @@ const Layout = () => {
                         className={styles.copyButtonContainer} 
                         role="button" 
                         tabIndex={0} 
-                        aria-label="Copy" 
+                        aria-label="Copiar" 
                         onClick={handleCopyClick}
                         onKeyDown={e => e.key === "Enter" || e.key === " " ? handleCopyClick() : null}
                     >
